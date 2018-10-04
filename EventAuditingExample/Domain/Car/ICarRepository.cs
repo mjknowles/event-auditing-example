@@ -5,7 +5,7 @@ namespace EventAuditingExample.Domain.Car
 {
     public interface ICarRepository
     {
-        Task<Car> AddAsync(Car car);
+        Car Add(Car car);
 
         void Update(Car car);
 

@@ -8,32 +8,32 @@ namespace EventAuditingExample.Domain.Car
 {
     public class Car : Entity, IAggregateRoot
     {
-        private string _make;
-        private string _model;
-        private bool _isDeleted;
+        public string Make { get; protected set; }
+        public string Model { get; protected set; }
 
         private List<Tire> _tires;
         public IReadOnlyCollection<Tire> Tires => _tires?.AsReadOnly();
 
-        public Car()
+        // Used by EF when rehydrating.
+        private Car(string make, string model)
         {
             _tires = new List<Tire>();
+            Make = make;
+            Model = model;
         }
 
-    
-        // Should be used when created a new car.
-        // Alternatively could use a static create method.
-        public Car(string make, string model, string createdBy) : this()
+        // Should be used when creating a new car.
+        public static Car Create(string make, string model, string createdBy)
         {
-            _make = make;
-            _model = model;
-            this.AddDomainEvent(new CarCreated(this, createdBy));
+            var car = new Car(make, model);
+            car.AddDomainEvent(new CarCreated(car, createdBy));
+            return car;
         }
 
         public void AddTire(Tire tire, string whodis)
         {
             _tires.Add(tire);
-            this.AddDomainEvent(new TireAdded(tire.Id, this.Id, whodis));
+            this.AddDomainEvent(new TireAdded(tire.Id, this, whodis));
         }
 
         public void SetTireMileage(int id, int miles, string whodis)
@@ -46,19 +46,20 @@ namespace EventAuditingExample.Domain.Car
 
         public void SetMake(string make, string whodis)
         {
-            this.AddDomainEvent(new MakeUpdated(this.Id, _make, make, whodis));
-            _make = make;
+            this.AddDomainEvent(new MakeUpdated(this.Id, Make, make, whodis));
+            Make = make;
         }
 
         public void SetModel(string model, string whodis)
         {
-            this.AddDomainEvent(new ModelUpdated(this.Id, _model, model, whodis));
-            _model = model;
+            this.AddDomainEvent(new ModelUpdated(this.Id, Model, model, whodis));
+            Model = model;
         }
 
         public void Delete(string whodis)
         {
             this.AddDomainEvent(new CarDeleted(this.Id, whodis));
+            IsDeleted = true;
         }
     }
 }

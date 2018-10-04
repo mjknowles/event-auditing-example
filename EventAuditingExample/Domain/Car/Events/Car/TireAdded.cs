@@ -9,8 +9,8 @@ namespace EventAuditingExample.Domain.Car.Events.Car
             set;
         }
 
-        public TireAdded(int tireId, int carId, string createdBy) 
-            : base(carId, createdBy)
+        public TireAdded(int tireId, Domain.Car.Car car, string createdBy) 
+            : base(() => GetCarId(car), createdBy)
         {
             TireId = tireId;
         }

@@ -18,8 +18,8 @@ namespace EventAuditingExample.Tests
         [Fact]
         public async Task AllEventsLogged()
         {
-            var tire = new Tire(0, me);
-            var car = new Car("toyota", "camry", me);
+            var tire = Tire.Create(0, me);
+            var car = Car.Create("toyota", "camry", me);
             car.AddTire(tire, me);
 
             var options = new DbContextOptionsBuilder<CarMgmtContext>()
@@ -32,7 +32,7 @@ namespace EventAuditingExample.Tests
             {
                 var repo = new CarRepository(context);
 
-                createdCar = await repo.AddAsync(car);
+                createdCar = repo.Add(car);
                 createdTire = createdCar.Tires.Single();
                 await context.SaveChangesAsync();
             }
@@ -40,6 +40,7 @@ namespace EventAuditingExample.Tests
             using (var context = new CarMgmtContext(options))
             {
                 var repo = new CarRepository(context);
+                createdCar = await repo.GetAsync(createdCar.Id);
 
                 var carCreatedEvent = context.CarEvents
                     .Single(e => e.EventName == nameof(CarCreated));
@@ -49,12 +50,14 @@ namespace EventAuditingExample.Tests
 
                 createdCar.SetMake("new make", me);
                 repo.Update(createdCar);
+
                 await context.SaveChangesAsync();
             }
 
             using (var context = new CarMgmtContext(options))
             {
                 var repo = new CarRepository(context);
+                createdCar = await repo.GetAsync(createdCar.Id);
 
                 var carUpdatedEvent = context.CarEvents
                 .Single(e => e.EventName == nameof(MakeUpdated));

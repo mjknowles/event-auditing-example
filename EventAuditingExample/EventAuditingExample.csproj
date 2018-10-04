@@ -14,7 +14,6 @@
     <Folder Include="Domain\Car\Events\" />
     <Folder Include="Domain\Car\Events\Car\" />
     <Folder Include="Domain\Car\Events\Tire\" />
-    <Folder Include="Infrastructure\Common\" />
     <Folder Include="Infrastructure\EntityConfigurations\" />
   </ItemGroup>
   <ItemGroup>
@@ -25,6 +24,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Domain\Common\IUnitOfWork.cs" />
+    <Compile Remove="Infrastructure\Car\CarEventExtensions.cs" />
+    <Compile Remove="Infrastructure\Car\TireEventExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

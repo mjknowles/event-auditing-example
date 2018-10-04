@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using EventAuditingExample.Domain.Car;
+using EventAuditingExample.Domain.Car.Events.Car;
+using EventAuditingExample.Domain.Car.Events.Tire;
 using EventAuditingExample.Infrastructure.Car;
 using EventAuditingExample.Infrastructure.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +12,10 @@ namespace EventAuditingExample.Infrastructure
     public class CarMgmtContext : DbContext
     {
         public DbSet<Domain.Car.Car> Cars { get; set; }
-        public DbSet<CarEventEntity> CarEvents { get; set; }
+        public DbSet<CarEvent> CarEvents { get; set; }
 
         public DbSet<Tire> Tires { get; set; }
-        public DbSet<TireEventEntity> TireEvents { get; set; }
+        public DbSet<TireEvent> TireEvents { get; set; }
 
         public CarMgmtContext()
         {
