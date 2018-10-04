@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventAuditingExample", "EventAuditingExample\EventAuditingExample.csproj", "{8B74F7F5-D508-4DAD-87DD-FE6A22489792}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventAuditingExample.Tests", "EventAuditingExample.Tests\EventAuditingExample.Tests.csproj", "{10BECB1E-4E34-434B-9505-E174EA9531E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B74F7F5-D508-4DAD-87DD-FE6A22489792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B74F7F5-D508-4DAD-87DD-FE6A22489792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B74F7F5-D508-4DAD-87DD-FE6A22489792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B74F7F5-D508-4DAD-87DD-FE6A22489792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10BECB1E-4E34-434B-9505-E174EA9531E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10BECB1E-4E34-434B-9505-E174EA9531E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10BECB1E-4E34-434B-9505-E174EA9531E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10BECB1E-4E34-434B-9505-E174EA9531E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
