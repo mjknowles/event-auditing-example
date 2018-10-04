@@ -44,11 +44,11 @@ namespace EventAuditingExample.Infrastructure.Car
         private void AddDomainEntityEvents(Domain.Car.Car car)
         {
             var carEvents = car.DomainEvents?.Select(e => (e as CarEvent));
-            if(carEvents != null && carEvents.Any())_context.CarEvents.AddRange(carEvents);
+            if(carEvents != null && carEvents.Any())_context.CarEvents.AddRange(carEvents.Select(e => e.ToEntity()));
 
             var tireEvents = car.Tires.Where(t => t.DomainEvents != null)
                                 .SelectMany(t => t.DomainEvents?.Select(e => (e as TireEvent)));
-            if(tireEvents != null && tireEvents.Any()) _context.TireEvents.AddRange(tireEvents);
+            if(tireEvents != null && tireEvents.Any()) _context.TireEvents.AddRange(tireEvents.Select(t => t.ToEntity()));
         }
     }
 }

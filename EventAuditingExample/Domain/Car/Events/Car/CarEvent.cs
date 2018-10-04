@@ -5,12 +5,12 @@ namespace EventAuditingExample.Domain.Car.Events.Car
 {
     public class CarEvent : DomainEvent
     {
-        private Func<int> _carIdFunc;
+        public Func<int> GetCarIdFunc { get; }
 
         private int _carId;
         public int CarId
         {
-            get { return _carId == 0 && _carIdFunc != null ? _carIdFunc() : _carId; }
+            get { return _carId == 0 && GetCarIdFunc != null ? GetCarIdFunc() : _carId; }
             protected set { _carId = value; }
         }
 
@@ -21,7 +21,7 @@ namespace EventAuditingExample.Domain.Car.Events.Car
 
         public CarEvent(Func<int> carIdFunc, string createdBy) : base(createdBy)
         {
-            _carIdFunc = carIdFunc;
+            GetCarIdFunc = carIdFunc;
         }
 
         protected static int GetCarId(EventAuditingExample.Domain.Car.Car car) => car.Id;

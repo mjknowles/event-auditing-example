@@ -15,6 +15,7 @@
     <Folder Include="Domain\Car\Events\Car\" />
     <Folder Include="Domain\Car\Events\Tire\" />
     <Folder Include="Infrastructure\EntityConfigurations\" />
+    <Folder Include="Infrastructure\Common\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
@@ -24,8 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Domain\Common\IUnitOfWork.cs" />
-    <Compile Remove="Infrastructure\Car\CarEventExtensions.cs" />
-    <Compile Remove="Infrastructure\Car\TireEventExtensions.cs" />
+    <Compile Remove="Infrastructure\Car\CarEventExtensions %28copy%29.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
